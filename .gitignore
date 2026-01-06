@@ -1,7 +1,9 @@
 Content/
-Data/Element
-Data/Monster
-Data/Skill
+Data/Element/
+Data/Monster/
+Data/Skill/
+Data/Intrinsic/
+Data/Item/
 Data/Universal.jsonpatch
 Shoehorns/shoehorn_test/
 shoehorn.cache

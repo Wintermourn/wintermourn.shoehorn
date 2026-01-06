@@ -39,4 +39,6 @@ return function()
     delete_index("Data/Element")
     clear_folder_of_extensions("Data/Skill", ".json", ".jsonpatch")
     delete_index("Data/Skill")
+    clear_folder_of_extensions("Data/Intrinsic", ".json", ".jsonpatch")
+    delete_index("Data/Intrinsic")
 end

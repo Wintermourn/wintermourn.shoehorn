@@ -19,7 +19,7 @@ local function get_string_in_jobject(object, key)
 end
 
 local function get_string_in_jobject_or_error(object, key, shoehorn_path, err)
-    return object[key]:ToString() or error(("%s (in %s)"):format(err, shoehorn_path))
+    return object[key] and object[key]:ToString() or error(("%s (in %s)"):format(err, shoehorn_path))
 end
 
 ---@return Wintermourn.Shoehorn.Pack
@@ -74,9 +74,8 @@ return function(shoehorn_folder, constants)
         output.registrations[category] = {}
 
         for registration in luanet.each(object) do
-            local pref_id = get_string_in_jobject_or_error(registration, "preferred-id", shoehorn_folder,
-                "Registered items in shoehorns must have `preferred-id`"
-            )
+            local pref_id = get_string_in_jobject(registration, "preferred-id")
+            if pref_id == "" then goto continue_reg end
             local replace_mode = get_string_in_jobject(registration, "replacement-mode")
 
             if not constants.valid_replace_types[category][replace_mode] then

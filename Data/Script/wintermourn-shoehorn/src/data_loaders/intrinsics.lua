@@ -26,24 +26,24 @@ local __Int32 = luanet.import_type 'System.Int32'
 local resolve_id = require 'wintermourn-shoehorn.util.id_resolver'
 
 local function exists(id)
-    return _DATA.DataIndices[__DataType.Skill]:ContainsKey(id)
+    return _DATA.DataIndices[__DataType.Intrinsic]:ContainsKey(id)
 end
 
 local mod = RogueEssence.PathMod.GetModFromNamespace 'wintermourn-shoehorn'
 local mod_path = __Path.Combine(RogueEssence.PathMod.APP_PATH, mod.Path)
-local skill_data_folder = __Path.Combine(mod_path, "Data/Skill")
+local intrinsic_data_folder = __Path.Combine(mod_path, "Data/Intrinsic")
 
 ---@param shoehorn Wintermourn.Shoehorn.Global
 ---@param pack Wintermourn.Shoehorn.Pack
 return function(shoehorn, pack, renames)
 
-    if not __Directory.Exists(skill_data_folder) then __Directory.CreateDirectory(skill_data_folder) end
+    if not __Directory.Exists(intrinsic_data_folder) then __Directory.CreateDirectory(intrinsic_data_folder) end
 
     local local_renames = {}
-    local shared_ids = pack.public_id and shoehorn.shared_identifiers[pack.public_id].skill or {}
+    local shared_ids = pack.public_id and shoehorn.shared_identifiers[pack.public_id].intrinsic or {}
 
-    if pack.registrations.skills == nil or #pack.registrations.skills == 0 then return end
-    for _c,v in pairs(pack.registrations.skills) do
+    if pack.registrations.intrinsics == nil or #pack.registrations.intrinsics == 0 then return end
+    for _c,v in pairs(pack.registrations.intrinsics) do
         if not v.enabled then
             goto continue
         end
@@ -69,22 +69,18 @@ return function(shoehorn, pack, renames)
         end
 
         local data_file_path = __Path.Combine(pack.folder, v.file)
-        local out_path = __Path.Combine(skill_data_folder, final_name ..".json")
+        local out_path = __Path.Combine(intrinsic_data_folder, final_name ..".json")
         local json_data = __JObject.Parse(__File.ReadAllText(data_file_path))
 
-        local data = json_data["Object"]["Data"]
-        local potential_element = resolve_id(__DataType.Element, data["Element"]:ToString(), renames.elements, shoehorn)
-        if potential_element then
-            data:Remove "Element"
-            data:Add("Element", __JValue (potential_element))
-        end
+        -- todo: patch events
+
         __File.WriteAllText(out_path, __JsonConvert.SerializeObject(json_data), __Encoding.UTF8)
-        table.insert(shoehorn.registered_identifiers.skills, final_name)
+        table.insert(shoehorn.registered_identifiers.intrinsics, final_name)
 
         ::continue::
     end
 
-    print("finished skills")
+    print("finished intrinsics")
 
     return local_renames
 end

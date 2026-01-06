@@ -168,7 +168,7 @@ return function(shoehorn, pack)
         end
         local array = __Array.CreateInstance(arrayType, elestate.TypeMap.Count)
         for e = 0, thisElementArray.Length - 1 do
-            print(type_reverse_table[i],type_reverse_table[e],calculated_matchups[type_reverse_table[i]],calculated_matchups[type_reverse_table[i]][type_reverse_table[e]])
+            --print(type_reverse_table[i],type_reverse_table[e],calculated_matchups[type_reverse_table[i]],calculated_matchups[type_reverse_table[i]][type_reverse_table[e]])
             array[e] = calculated_matchups[type_reverse_table[i]][type_reverse_table[e]] or thisElementArray[e] or 4
         end
         for e = thisElementArray.Length, elestate.TypeMap.Count - 1 do

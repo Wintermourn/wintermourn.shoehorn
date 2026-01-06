@@ -31,8 +31,9 @@ local constants = {
         }
     },
     hash_order = {
-        "monsters",
         "elements",
+        "monsters",
+        "intrinsics",
         "skills"
     }
 }
@@ -126,12 +127,12 @@ for mod in luanet.each(RogueEssence.PathMod.Mods) do
 
 end
     
-local remembered_hashes = {}
+local hashes = {}
 local has_data_changed = false
 
-local element_hash = require 'wintermourn-shoehorn.src.hashing.elements' (shoehorn.packs)
-local monster_hash = require 'wintermourn-shoehorn.src.hashing.monsters' (shoehorn.packs)
-local skills_hash = require 'wintermourn-shoehorn.src.hashing.skills' (shoehorn.packs)
+for i, group in ipairs(constants.hash_order) do
+    hashes[i] = require ("wintermourn-shoehorn.src.hashing.".. group) (shoehorn.packs)
+end
 
 local current_hash = 1
 if not __File.Exists(__Path.Combine(RogueEssence.PathMod.APP_PATH, this_mod.Path, "shoehorn.cache")) then
@@ -139,20 +140,21 @@ if not __File.Exists(__Path.Combine(RogueEssence.PathMod.APP_PATH, this_mod.Path
 else
     for line in io.lines(__Path.Combine(RogueEssence.PathMod.APP_PATH, this_mod.Path, "shoehorn.cache")) do
         if constants.hash_order[current_hash] then
-            remembered_hashes[constants.hash_order[current_hash]] = line
+            if hashes[constants.hash_order[current_hash]] ~= line then
+                has_data_changed = true
+            end
         else break
         end
         current_hash = current_hash + 1
     end
-
-    if element_hash ~= remembered_hashes.elements then has_data_changed = true end
-    if monster_hash ~= remembered_hashes.monsters then has_data_changed = true end
-    if skills_hash ~= remembered_hashes.skills then has_data_changed = true end
+    if current_hash < #constants.hash_order then
+        has_data_changed = true
+    end
 end
 
 if has_data_changed then
     require 'wintermourn-shoehorn.src.clear' ()
-    _DATA:LoadIndex(__DataType.Monster)
+    _DATA:InitDataIndices()
 
     for _i, pack in pairs(shoehorn.packs) do
         if not pack.registrations then 
@@ -163,6 +165,7 @@ if has_data_changed then
 
         renamed_entries.elements = require 'wintermourn-shoehorn.src.data_loaders.elements' (shoehorn, pack)
         renamed_entries.skills = require 'wintermourn-shoehorn.src.data_loaders.skills' (shoehorn, pack, renamed_entries)
+        renamed_entries.intrinsics = require 'wintermourn-shoehorn.src.data_loaders.intrinsics' (shoehorn, pack, renamed_entries)
         require 'wintermourn-shoehorn.src.data_loaders.monsters' (shoehorn, pack, renamed_entries)
         ::skip_loading::
     end
@@ -172,11 +175,12 @@ if has_data_changed then
     reindex (__DataType.Element)
     reindex (__DataType.Monster)
     reindex (__DataType.Skill)
+    reindex (__DataType.Intrinsic)
 
     local new_cache = io.open(__Path.Combine(RogueEssence.PathMod.APP_PATH, this_mod.Path, "shoehorn.cache"), "w") --[[@as file]]
-    new_cache:write(monster_hash ..'\n')
-    new_cache:write(element_hash ..'\n')
-    new_cache:write(skills_hash ..'\n')
+    for _i, k in ipairs(hashes) do
+        new_cache:write(k ..'\n')
+    end
     new_cache:flush()
     new_cache:close()
 

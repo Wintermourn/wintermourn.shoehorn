@@ -102,13 +102,20 @@ return function(shoehorn, pack, renames)
             for _, element in ipairs {"Element1", "Element2"} do
                 local element_id = resolve_id(__DataType.Element, form[element]:ToString(), renames.elements, shoehorn)
                 if element_id ~= nil then
-                    print(element, element_id)
                     form:Remove (element)
                     form:Add (element, __JValue (element_id))
                 end
             end
+            for _, group in ipairs {"TeachSkills", "SharedSkills", "SecretSkills", "LevelSkills"} do
+                for skill in luanet.each(form[group]) do
+                    local skill_id = resolve_id(__DataType.Skill, skill["Skill"]:ToString(), renames.skills, shoehorn)
+                    if skill_id ~= nil then
+                        skill:Remove "Skill"
+                        skill:Add ("Skill", __JValue (skill_id))
+                    end
+                end
+            end
         end
-        --! todo: patch moves
 
         local out_data = __JsonConvert.SerializeObject(json_data)
         local data_ext = __Path.GetExtension(v.files.data):lower()
