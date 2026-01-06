@@ -1,8 +1,10 @@
 local shoehorn_placeholder_start = "!shoehorn{"
 local shoehorn_placeholder_end = "}"
+local explicit_identifier_marker = "!"
 
 local shoehorn_placeholder_start_len = shoehorn_placeholder_start:len()
 local shoehorn_placeholder_end_len = shoehorn_placeholder_end:len()
+local explicit_marker_len = explicit_identifier_marker:len()
 
 local function exists(data_type, id)
     return _DATA.DataIndices[data_type]:ContainsKey(id)
@@ -31,14 +33,22 @@ return function(data_type, str, local_renames, shoehorn)
                     end
                 end
             else
-                if local_renames[identifier] then
-                    return local_renames[identifier]
-                elseif exists(data_type, identifier) then
-                    return identifier
+                if identifier:sub(1, explicit_marker_len) == explicit_identifier_marker then
+                    return identifier:sub(explicit_marker_len + 1)
+                else
+                    if local_renames[identifier] then
+                        return local_renames[identifier]
+                    elseif exists(data_type, identifier) then
+                        return identifier
+                    end
                 end
             end
         end
     end
 
-    return local_renames[str] or (exists(data_type, str) and str)
+    if str:sub(1, explicit_marker_len) == explicit_identifier_marker then
+        return str:sub(explicit_marker_len + 1)
+    else
+        return local_renames[str] or (exists(data_type, str) and str)
+    end
 end
