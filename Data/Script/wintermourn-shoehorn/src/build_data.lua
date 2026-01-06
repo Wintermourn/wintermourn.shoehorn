@@ -22,9 +22,22 @@ local function get_string_in_jobject_or_error(object, key, shoehorn_path, err)
     return object[key] and object[key]:ToString() or error(("%s (in %s)"):format(err, shoehorn_path))
 end
 
+local valid_pack_info_file_names = {
+    ".shoehorn",
+    "pack.shoehorn",
+    "pack.shoehorn.json"
+}
+
 ---@return Wintermourn.Shoehorn.Pack
 return function(shoehorn_folder, constants)
-    local ficontent = __File.ReadAllText(__Path.Combine(shoehorn_folder, ".shoehorn"))
+    local ficontent
+    for i, k in ipairs(valid_pack_info_file_names) do
+        local path = __Path.Combine(shoehorn_folder, k)
+        if __File.Exists(path) then
+            ficontent = __File.ReadAllText(path)
+            break
+        end
+    end
     local json = __JObject.Parse(ficontent)--__JsonConvert.DeserializeObject()
 
     if json == nil then print(("Shoehorn file in %s is invalid or missing"):format(shoehorn_folder:sub(RogueEssence.PathMod.APP_PATH:len()))) return nil end
