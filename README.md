@@ -1,3 +1,9 @@
+> [!WARNING]
+> This mod is very early in development. There may be issues. You have been warned.
+> 
+> This mod currently does not include any UI. Any changes to the Shoehorn folder will result in regeneration of all data.
+> Additionally, things may not be generated in consistent order. Do not modify with a valuable save file. Make sure to keep backups.
+
 # Shoehorn
 Dynamic content registration utility for PMD: Origins
 
@@ -25,3 +31,5 @@ You can also include compatibility data for certain quests!
 - [ ] Zone Monster Registration & Adjustment
 - [ ] Zone Item Registration & Adjustment
 - [ ] `.jsonpatch` Shoehorn Support
+- [ ] Ingame UI
+- [ ] Automatic Save Data Adjustment
