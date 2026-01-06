@@ -51,8 +51,8 @@ return function(shoehorn_folder, constants)
         description = json["description"]:ToString()
     }
 
-    local pub_id = json["public-id"]
-    if pub_id then output.public_id = pub_id:ToString() end
+    local namespace = json["id-namespace"]
+    if namespace then output.public_id = namespace:ToString() end
 
     local authors = json["authors"]
     if authors and authors.Type == __JTokenType.Array then
