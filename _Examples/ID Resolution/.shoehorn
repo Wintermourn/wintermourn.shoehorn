@@ -1,0 +1,32 @@
+{
+    "shoehorn-version": 0.1,
+
+    "id-namespace": "id-resolution-example",
+    "name": "Shoehorn ID Resolution Example",
+    "authors": [
+        "Wintermourn"
+    ],
+    "description": "Pack created for testing Shoehorn's features.",
+
+    "registrations": {
+        "monsters": [
+            {
+                "preferred-id": "snivy",
+                "replacement-mode": "rename",
+                "files": {
+                    "data": "monster/monster.json"
+                },
+                "habitat-tags": [
+                    "forest",
+                    "grass"
+                ]
+            }
+        ],
+        "elements": [{
+            "preferred-id": "new",
+            "replacement-mode": "replace",
+            "file": "element.json"
+        }]
+    }
+}
+

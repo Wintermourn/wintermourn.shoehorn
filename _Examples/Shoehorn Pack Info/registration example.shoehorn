@@ -1,0 +1,72 @@
+{
+    "shoehorn-version": 0.1,
+
+    "id-namespace": "shoehorn-test-pack",
+    "name": "Shoehorn Internal Test Pack",
+    "authors": [
+        "Wintermourn"
+    ],
+    "description": "Pack created for testing Shoehorn's features.",
+
+    "registrations": {
+        "monsters": [
+            {
+                "preferred-id": "snivy",
+                "replacement-mode": "merge",
+                "files": {
+                    "data": "monster/monster.json",
+                    "sprites": "monster/monster.chara",
+                    "portraits": "monster/monster.portrait"
+                },
+                "habitat-tags": [
+                    "forest",
+                    "grass"
+                ]
+            },
+            {
+                "preferred-id": "snivy",
+                "replacement-mode": "rename",
+                "files": {
+                    "data": "monster/monster.json",
+                    "sprites": "monster/monster.chara",
+                    "portraits": "monster/monster.portrait"
+                },
+                "habitat-tags": [
+                    "forest",
+                    "grass"
+                ]
+            },
+            {
+                    "#comment": "Not currently implemented.",
+                "shoehorn-id": "secondary-test-pack:snivy",
+                "replacement-mode": "replace",
+                "files": {
+                    "sprites": "monster/monster.chara",
+                    "portraits": "monster/monster.portrait"
+                }
+            }
+        ],
+        "elements": [{
+            "preferred-id": "new",
+            "replacement-mode": "replace",
+            "file": "element.json"
+        }],
+        "skills": [{
+            "preferred-id": "die",
+            "replacement-mode": "rename",
+            "file": "skill.json"
+        }],
+        "items": [{
+                "#comment": "Not currently implemented.",
+            "preferred-id": "grass",
+            "replacement-mode": "replace",
+            "file": "item.json"
+        }],
+        "intrinsics": [{
+            "preferred-id": "intrinsic_test",
+            "replacement-mode": "replace",
+            "file": "air_lock.json"
+        }]
+    }
+}
+

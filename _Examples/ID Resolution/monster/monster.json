@@ -1,0 +1,64 @@
+﻿{
+    "Version": "0.8.11.0",
+    "Object": {
+        "$type": "RogueEssence.Data.MonsterData, RogueEssence",
+        "Name": {
+            "DefaultText": "Snivy 2 (example)",
+            "LocalTexts": {
+            }
+        },
+        "Released": true,
+        "Comment": "",
+        "Title": {
+            "DefaultText": "Grass Snake Pokémon?",
+            "LocalTexts": {
+            }
+        },
+        "IndexNum": 495,
+        "EXPTable": "medium_slow",
+        "SkillGroup1": "field",
+        "SkillGroup2": "grass",
+        "JoinRate": 20,
+        "PromoteFrom": "",
+        "Promotions": [],
+        "Forms": [{
+            "$type": "PMDC.Data.MonsterFormData, PMDC",
+            "Released": true,
+            "Generation": 6,
+            "GenderlessWeight": 0,
+            "MaleWeight": 7,
+            "FemaleWeight": 1,
+            "BaseHP": 45,
+            "BaseAtk": 45,
+            "BaseDef": 55,
+            "BaseMAtk": 45,
+            "BaseMDef": 55,
+            "BaseSpeed": 63,
+            "ExpYield": 62,
+            "Height": 0.6,
+            "Weight": 8.1,
+            "Personalities": [
+                0,
+                31
+            ],
+            "TeachSkills": [],
+            "SharedSkills": [],
+            "SecretSkills": [],
+            "FormName": {
+                "DefaultText": "Snivy",
+                "LocalTexts": {}
+            },
+            "Temporary": false,
+            "PromoteForm": 0,
+            "Element1": "grass",
+            "Element2": "!shoehorn{shoehorn-test-pack:new|!dragon|none}",
+            "Intrinsic1": "overgrow",
+            "Intrinsic2": "none",
+            "Intrinsic3": "contrary",
+            "LevelSkills": [{
+                "Level": 1,
+                "Skill": "!shoehorn{die|tackle}"
+            }]
+        }]
+    }
+}

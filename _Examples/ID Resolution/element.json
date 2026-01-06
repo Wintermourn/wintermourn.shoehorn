@@ -1,0 +1,20 @@
+{
+    "name": {
+        "default": "Mystery",
+        "localizations": {}
+    },
+    "relations": {
+        "strength-against": {
+            "grass": "high",
+            "ice": "very_high",
+            "electric": "none"
+        },
+        "resistance-against": {
+            "dragon": "low",
+            "fairy": "low",
+            "water": "high",
+            "ice": "low",
+            "bug": "very_high"
+        }
+    }
+}
