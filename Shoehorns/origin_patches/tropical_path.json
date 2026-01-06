@@ -1,0 +1,23 @@
+{
+    "spawns": [
+        {
+            "floor-range": {
+                "min": 1, "max": 3
+            },
+            "monsters": {
+                "grades": [1, 2],
+                "allowed-tags": [],
+                "denied-tags": []
+            },
+            "items": {
+                "grades": [1, 3],
+                "allowed-tags": [
+                    "forest", "apricorn", "seed"
+                ],
+                "denied-tags": [
+                    "fire", "volcano", "ocean", "water", "metal"
+                ]
+            }
+        }
+    ]
+}

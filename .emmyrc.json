@@ -1,0 +1,32 @@
+{
+    "workspace": {
+        "enableReindex": false,
+        "encoding": "utf-8",
+        "ignoreDir": [],
+        "ignoreGlobs": [],
+        "library": [],
+        "moduleMap": [],
+        "packageDirs": [],
+        "preloadFileSize": 0,
+        "reindexDuration": 5000,
+        "workspaceRoots": []
+    },
+    "diagnostics": {
+        "diagnosticInterval": 500,
+        "disable": [],
+        "enable": true,
+        "enables": [],
+        "globals": [
+            "STRINGS",
+            "RogueEssence",
+            "luanet",
+            "import",
+            "_MENU",
+            "_DATA",
+            "DiagManager",
+            "LUA_ENGINE"
+        ],
+        "globalsRegex": [],
+        "severity": {}
+    }
+}

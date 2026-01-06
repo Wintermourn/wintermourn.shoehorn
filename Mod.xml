@@ -1,0 +1,19 @@
+<Header>
+    <Namespace>wintermourn-shoehorn</Namespace>
+    <Name>Shoehorn</Name>
+    <Author>Wintermourn</Author>
+    <Description>Dynamically registers and inserts custom content into PMDO.</Description>
+
+    <UUID>19ac4421-8a78-4e8d-9803-bd50264afe39</UUID>
+
+    <Version>0.1</Version>
+    <GameVersion>0.8.11</GameVersion>
+    <ModType>Mod</ModType>
+    <Relationships>
+        <RelatedMod>
+        <UUID>6543E632-3617-4BC2-86E0-2DF1C8CF1BD9</UUID>
+        <Namespace>mentoolkit</Namespace>
+        <Relationship>DependsOn</Relationship>
+        </RelatedMod>
+    </Relationships>
+</Header>

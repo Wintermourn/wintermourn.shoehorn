@@ -1,0 +1,20 @@
+{
+    "shoehorn-version": 0.1,
+
+    "name": "Origins Zone Patch Pack",
+    "authors": [
+        "Wintermourn"
+    ],
+    "description": "Pack created for testing Shoehorn's features.",
+
+    "dependencies": {
+        "active-quest": "",
+        "active-mods": []
+    },
+
+    "patches": {
+        "zones": {
+            "tropical_path": "tropical_path.json"
+        }
+    }
+}
