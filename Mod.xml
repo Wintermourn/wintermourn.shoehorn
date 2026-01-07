@@ -9,11 +9,5 @@
     <Version>0.1</Version>
     <GameVersion>0.8.11</GameVersion>
     <ModType>Mod</ModType>
-    <Relationships>
-        <RelatedMod>
-        <UUID>6543E632-3617-4BC2-86E0-2DF1C8CF1BD9</UUID>
-        <Namespace>mentoolkit</Namespace>
-        <Relationship>DependsOn</Relationship>
-        </RelatedMod>
-    </Relationships>
+    <Relationships />
 </Header>
